@@ -1,35 +1,107 @@
-const path = require('path');
-
 const express = require('express');
-const bodyParser = require('body-parser');
 
-const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database');
+const cors = require('cors');
+
+// const mongoose = require('mongoose')
+
+
+const fs = require('fs')
+
+const helmet  = require('helmet');
+
+const morgan = require('morgan')
+
+const dotenv = require('dotenv');
+
+require('dotenv').config();
+
+const path = require('path')
+
+const bodyparser = require('body-parser');
+
+// const User = require('./model/usertable');
+
+// const Expense = require('./model/expensetable');
+
+
+// const premium = require('./model/purchasetable');
+
+// const Forgotpassword = require('./model/forgotpassword')
+
+// const Download = require('./model/downloaddetail')
+
+// const sequelize = require('./model/database');
+
+// const db = require('./model/database');
+
+// const accesLogStream = fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'})
 
 const app = express();
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-// const adminRoutes = require('./routes/admin');
-// const shopRoutes = require('./routes/shop');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors())
 
-app.use((req, res, next) => {
-  // User.findById(1)
-  //   .then(user => {
-  //     req.user = user;
-  //     next();
-  //   })
-  //   .catch(err => console.log(err));
-});
+ app.use(helmet())
 
-// app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
+app.use(morgan())
+// app.use(express.static('view'))
 
-app.use(errorController.get404);
+app.use(bodyparser.json())
 
-mongoConnect(client => {
-  console.log(client);
-  app.listen(3000);
-});
+app.use(bodyparser.urlencoded({extended:true}));
+
+
+//  );
+
+app.use('/user',require('./router/userRoutes'));
+
+app.use('/expense',require('./router/expenseRoute'));
+
+// app.use('/purchase',require('./router/purchaseroutes'));
+
+// app.use('/premium',require('./router/premiumFeatureRouter'));
+
+// app.use('/password',require('./router/forget_password_route'));
+
+
+
+//  app.use((req,res)=>{
+//    res.sendFile(path.join(__dirname,`view/${req.url}`))
+//  })
+   
+
+  //  User.hasMany(Expense);
+
+  //  Expense.belongsTo(User)
+    
+   
+
+   
+  //  User.hasMany(premium);
+
+  //  premium.belongsTo(User)
+
+  //  User.hasMany(Forgotpassword);
+
+  //  Forgotpassword.belongsTo(User);
+
+  //  User.hasMany(Download);
+  //  Download.belongsTo(User)
+
+
+   
+  //  sequelize.sync().then(()=>{
+  //   app.listen(3000)
+  //  }).catch((err)=>{
+  //     console.log(err)
+      
+  //  })
+   app.listen(3000,()=>{
+      console.log('app running on 3000')
+   })
+
+
+
+  
+
+
+  

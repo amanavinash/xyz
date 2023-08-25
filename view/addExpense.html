@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style/expense.css"/>
+</head>
+
+<body>
+  <!-- <div id="expense"> -->
+    <div><h3>EXPENSE TRACKER</h3></div>
+      <hr>
+    <div id="expense">
+      <div class="left_div">
+    <form class="Shift_left" id="new" onsubmit="expense(event)">
+      <label for="price">Price:</label><br>
+      <input type="text" id="price" name="price" placeholder="Enter Price..." required /><br><br>
+
+      <label for="category">Category:</label><br>
+      <select name="category" id="category">
+
+        <option value="" hidden>Choose a category</option>
+        <option value="Movies">Movies</option>
+        <option value="food">Food</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Others">Others</option>
+
+      </select><br><br>
+      <label for="description">Description:</label><br>
+      <input type="text" id="description" name="description" placeholder="Enter Description..." required /><br><br>
+      <button id="button">Submit</button><br>
+    </form><br><br>
+    <span id="userleader-button"></span>
+    <span id="add-premium"></span>
+    <span id="color-for-error"></span>
+
+  <form id="form2" class="Shift_left">
+    <p id="msg"></p>
+     limit <select id="rowPerPage">
+      <option>limit</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+
+  </form>
+</div>
+<div class="rigth_div" id="border_color">
+  <div id="list-user">
+    <ul id="listOfUsers"></ul>
+  </div>
+</div>
+</div>
+<br><br>
+
+
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+   <div id="pagination_flex" ><button id="pagination_btn_prev">Previous Page</button><span id="pagenumber"> 1 </span><button id="pagination_btn_next">Next Page</button> 
+    </div>
+   
+
+  <ul id="downloadedfile"></ul>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"></script>
+
+  <script src="addExpense.js"></script>
+</body>
+
+</html>
